@@ -20,9 +20,12 @@ export class HomePage {
   }
 
   send() {
+    if (!this.newMessage) return;
+    
     this._db.list('messages').push({
       author: 'Anónimo',
       message: this.newMessage,
+      date: new Date().toString()
     });
     this.newMessage = '';
   }
