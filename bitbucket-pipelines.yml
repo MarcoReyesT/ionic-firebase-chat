@@ -11,7 +11,7 @@ pipelines:
         caches:
           - node
         script: # Modify the commands below to build your repository.
-          - yarn global add ionic firebase-tools
-          - yarn install
+          - npm -g install ionic firebase-tools
+          - npm install
           - ionic build
           - firebase deploy --token "$FIREBASE_TOKEN"
