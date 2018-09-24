@@ -22,6 +22,7 @@ export const firebaseConfig = {
 // Importa páginas (custom elements)
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { MessageProvider } from '../providers/message/message';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { HomePage } from '../pages/home/home';
     SplashScreen,
     // Nota (4) Importa provider firebase database
     AngularFireDatabase,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    MessageProvider
   ]
 })
 export class AppModule { }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs/Observable';
 import { Message } from '../../common/message';
+import { MessageProvider } from '../../providers/message/message';
 
 @Component({
   selector: 'page-home',
@@ -15,14 +15,14 @@ export class HomePage {
   // Nuevo mensaje
   newMessage: string;
 
-  constructor(public navCtrl: NavController, private _db: AngularFireDatabase) {
-    this.messages = this._db.list<Message>('messages').valueChanges();
+  constructor(public navCtrl: NavController, private _msgProvider: MessageProvider) {
+    this.messages = _msgProvider.fetchAll();
   }
 
   send() {
     if (!this.newMessage) return;
-    
-    this._db.list('messages').push({
+
+    this._msgProvider.add({
       author: 'Anónimo',
       message: this.newMessage,
       date: new Date().toString()
