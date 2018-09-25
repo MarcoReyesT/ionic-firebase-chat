@@ -20,9 +20,11 @@
 <ion-footer no-shadow no-border>
   <ion-toolbar position="bottom">
 
+    <img class="image-preview" *ngIf="base64Image" [src]="base64Image">
+
     <ion-item no-lines>
       <ion-input [(ngModel)]="newMessage" type="text" placeholder="Escribe aquí"></ion-input>
-      <button ion-button outline item-end icon-only (click)="send()" [disabled]="!newMessage">
+      <button ion-button outline item-end icon-only (click)="takePic()">
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-item>

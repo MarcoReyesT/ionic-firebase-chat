@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Camera } from '@ionic-native/camera';
 
 // Nota: (1) Importa módulos de firebase
 import { AngularFireModule } from '@angular/fire';
@@ -48,7 +49,8 @@ import { MessageProvider } from '../providers/message/message';
     // Nota (4) Importa provider firebase database
     AngularFireDatabase,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    MessageProvider
+    MessageProvider,
+    Camera
   ]
 })
 export class AppModule { }
