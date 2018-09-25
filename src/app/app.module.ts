@@ -7,28 +7,34 @@ import { Camera } from '@ionic-native/camera';
 
 // Nota: (1) Importa módulos de firebase
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 // Nota (2) Credenciales y configuración inicial de firebase
 export const firebaseConfig = {
-  apiKey: "AIzaSyAhO3HE7We3xMb-k9JHtB3HcwCKaxL1G7A",
-  authDomain: "app-icc714-2018-sem-2.firebaseapp.com",
-  databaseURL: "https://app-icc714-2018-sem-2.firebaseio.com",
-  projectId: "app-icc714-2018-sem-2",
-  storageBucket: "app-icc714-2018-sem-2.appspot.com",
-  messagingSenderId: "723970279214"
+apiKey: "AIzaSyBIu0hgFOIJoONQhqZ-PdpoqdLnjJ5k4vY",
+  authDomain: "tarea1-ca6ca.firebaseapp.com",
+  databaseURL: "https://tarea1-ca6ca.firebaseio.com",
+  projectId: "tarea1-ca6ca",
+  storageBucket: "tarea1-ca6ca.appspot.com",
+  messagingSenderId: "100479826167"
 };
 
 // Importa páginas (custom elements)
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
+import { AuthService } from '../services/auth.service';
+import { NombrePage } from '../pages/nombre/nombre';
 import { MessageProvider } from '../providers/message/message';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage,
+    NombrePage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +47,9 @@ import { MessageProvider } from '../providers/message/message';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage,
+    NombrePage
   ],
   providers: [
     StatusBar,
@@ -49,6 +57,8 @@ import { MessageProvider } from '../providers/message/message';
     // Nota (4) Importa provider firebase database
     AngularFireDatabase,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
+    AuthService,
+    AngularFireAuth,
     MessageProvider,
     Camera
   ]

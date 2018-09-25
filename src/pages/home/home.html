@@ -6,12 +6,13 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content #contenido overflow-scroll="true">
 
   <ion-list>
     <ion-item text-wrap *ngFor="let msg of messages | async">
       <h2>{{ msg.author }}</h2>
       <p>{{ msg.message }}</p>
+      <p item-end>{{ msg.date.substring(16, 21) }}</p>
     </ion-item>
   </ion-list>
 

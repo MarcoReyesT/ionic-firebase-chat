@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams  } from 'ionic-angular';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs/Observable';
 import { Message } from '../../common/message';
+import { Content } from 'ionic-angular';
 import { MessageProvider } from '../../providers/message/message';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-
 
 @Component({
   selector: 'page-home',
@@ -17,20 +18,28 @@ export class HomePage {
   // Nuevo mensaje
   newMessage: string;
   base64Image: string[];
+  autor: string;
 
-  constructor(public navCtrl: NavController, private _msgProvider: MessageProvider, private camera: Camera) {
+  @ViewChild(Content) contenido: Content;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _msgProvider: MessageProvider, private camera: Camera) {
     this.messages = _msgProvider.fetchAll();
+    this.autor = this.navParams.get('alias');
+  }
+  ionViewCanEnter(){
+    this.contenido.scrollToBottom();
   }
 
   send() {
     if (!this.newMessage) return;
 
     this._msgProvider.add({
-      author: 'Anónimo',
+      author: this.navParams.get('alias'),
       message: this.newMessage,
       date: new Date().toString()
     });
     this.newMessage = '';
+    this.contenido.scrollToBottom();
   }
 
   takePic() {
