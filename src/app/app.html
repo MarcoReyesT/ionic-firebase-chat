@@ -1,1 +1,16 @@
 <ion-nav [root]="rootPage"></ion-nav>
+
+<ion-header>
+  <ion-toolbar position="top">
+
+    <ion-item no-lines>
+      <ion-item  *ngIf="auth.getEmail()">
+      </ion-item>
+      <ion-item (click)="logout()" *ngIf="auth.authenticated" item-end>
+      	<ion-icon name="log-out" item-end></ion-icon>
+        Bienvenido {{auth.getEmail()}}
+      </ion-item>
+    </ion-item>
+
+  </ion-toolbar>
+</ion-header>

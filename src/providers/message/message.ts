@@ -22,4 +22,8 @@ export class MessageProvider {
     this._db.list('messages').push(msg);
   }
 
+  delete(key: any) {
+    this._db.list('messages/' + key).remove();
+  }
+
 }

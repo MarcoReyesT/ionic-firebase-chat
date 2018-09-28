@@ -14,18 +14,19 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 // Nota (2) Credenciales y configuración inicial de firebase
 export const firebaseConfig = {
 apiKey: "AIzaSyBIu0hgFOIJoONQhqZ-PdpoqdLnjJ5k4vY",
-  authDomain: "tarea1-ca6ca.firebaseapp.com",
-  databaseURL: "https://tarea1-ca6ca.firebaseio.com",
-  projectId: "tarea1-ca6ca",
-  storageBucket: "tarea1-ca6ca.appspot.com",
-  messagingSenderId: "100479826167"
+    authDomain: "tarea1-ca6ca.firebaseapp.com",
+    databaseURL: "https://tarea1-ca6ca.firebaseio.com",
+    projectId: "tarea1-ca6ca",
+    storageBucket: "tarea1-ca6ca.appspot.com",
+    messagingSenderId: "100479826167"
 };
 
 // Importa páginas (custom elements)
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-import { AuthService } from '../services/auth.service';
+import { SignupPage } from '../pages/signup/signup';
+import { AuthService } from '../providers/auth/auth.service';
 import { NombrePage } from '../pages/nombre/nombre';
 import { MessageProvider } from '../providers/message/message';
 
@@ -34,6 +35,7 @@ import { MessageProvider } from '../providers/message/message';
     MyApp,
     HomePage,
     LoginPage,
+    SignupPage,
     NombrePage
   ],
   imports: [
@@ -49,6 +51,7 @@ import { MessageProvider } from '../providers/message/message';
     MyApp,
     HomePage,
     LoginPage,
+    SignupPage,
     NombrePage
   ],
   providers: [

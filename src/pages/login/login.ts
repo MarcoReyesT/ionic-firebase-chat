@@ -3,7 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { NombrePage } from '../nombre/nombre';
-import { AuthService } from '../../services/auth.service';
+import { SignupPage } from '../signup/signup';
+import { AuthService } from '../../providers/auth/auth.service';
 
 /**
  * Generated class for the LoginPage page.
@@ -13,6 +14,7 @@ import { AuthService } from '../../services/auth.service';
  */
 
 @Component({
+  moduleId: "modulelogin",
   selector: 'page-login',
   templateUrl: 'login.html',
 })
@@ -40,8 +42,12 @@ export class LoginPage {
 		};
 		this.auth.signInWithEmail(credentials)
 			.then(
-				() => this.navCtrl.setRoot(NombrePage),
+				() => this.navCtrl.setRoot(HomePage),
 				error => this.loginError = error.message
 			);
+    }
+
+    signup() {
+      this.navCtrl.push(SignupPage);
     }
 }

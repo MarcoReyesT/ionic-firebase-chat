@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Message } from '../../common/message';
 import { Content } from 'ionic-angular';
 import { MessageProvider } from '../../providers/message/message';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { AuthService } from '../../providers/auth/auth.service';
 
 @Component({
   selector: 'page-home',
@@ -19,22 +19,26 @@ export class HomePage {
   newMessage: string;
   base64Image: string[];
   autor: string;
+  sesion: AuthService;
 
   @ViewChild(Content) contenido: Content;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _msgProvider: MessageProvider, private camera: Camera) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _msgProvider: MessageProvider, private auth: AuthService) {
     this.messages = _msgProvider.fetchAll();
-    this.autor = this.navParams.get('alias');
+    this.sesion = auth;
+    //this.autor = this.navParams.get('alias');
   }
-  ionViewCanEnter(){
+  ionViewDidEnter(){
     this.contenido.scrollToBottom();
   }
 
   send() {
-    if (!this.newMessage) return;
+    if (!this.newMessage && this.sesion.authenticated()) return;
 
     this._msgProvider.add({
-      author: this.navParams.get('alias'),
+      //author: this.navParams.get('alias'),
+      email: this.sesion.getEmail(),
+      author: "Anónimo",
       message: this.newMessage,
       date: new Date().toString()
     });
@@ -43,21 +47,11 @@ export class HomePage {
   }
 
   takePic() {
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
 
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64 (DATA_URL):
-      this.base64Image.push('data:image/jpeg;base64,' + imageData);
-    }, (err) => {
-      // Handle error
-      console.error('takePic error', err);
-    });
+  }
+
+  eliminar() {
+
   }
 
 }
