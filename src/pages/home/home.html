@@ -10,10 +10,10 @@
 
   <ion-list>
     <ion-item text-wrap *ngFor="let msg of messages | async">
-      <h2>{{ msg.author }}</h2>
-      <p>{{ msg.message }}</p>
+      <p>{{ msg.author }}</p>
+      <h2>{{ msg.message }}</h2>
       <p item-end>{{ msg.date.substring(16, 21) }}</p>
-      <ion-icon *ngIf="auth.getEmail() == msg.email" name="close" item-end (click)="eliminar()"></ion-icon>
+      <ion-icon *ngIf="auth.getEmail() == msg.email" name="close" item-end (click)="eliminar(msg)"></ion-icon>
     </ion-item>
   </ion-list>
 

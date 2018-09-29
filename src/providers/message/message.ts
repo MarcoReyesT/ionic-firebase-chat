@@ -12,18 +12,26 @@ import { Message } from '../../common/message';
 @Injectable()
 export class MessageProvider {
 
-  constructor(private _db: AngularFireDatabase) { }
+  //messages: AngularFireList<Message>;
+
+  constructor(private _db: AngularFireDatabase) {
+    this._db.list<Message>('messages').valueChanges();
+  }
 
   fetchAll() {
     return this._db.list<Message>('messages').valueChanges();
+    //return this.messages;
   }
 
   add(msg: Message) {
-    this._db.list('messages').push(msg);
+    this._db.list<Message>('messages').push(msg);
   }
 
-  delete(key: any) {
-    this._db.list('messages/' + key).remove();
+  delete(msg: any) {
+    //this._db.list<Message>('messages/' + msg).remove();
+    //this._db.list('messages').remove(msg);
+    //this.messages.remove(msg);
+  		console.log(msg.$key);
   }
 
 }

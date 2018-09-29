@@ -42,7 +42,7 @@ export class LoginPage {
 		};
 		this.auth.signInWithEmail(credentials)
 			.then(
-				() => this.navCtrl.setRoot(HomePage),
+				() => this.navCtrl.setRoot(NombrePage),
 				error => this.loginError = error.message
 			);
     }

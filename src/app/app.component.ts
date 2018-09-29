@@ -46,7 +46,7 @@ export class MyApp {
       .subscribe(
         user => {
           if (user) {
-            this.rootPage = HomePage;
+            this.rootPage = NombrePage;
           } else {
             this.rootPage = LoginPage;
           }
